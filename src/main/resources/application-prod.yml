@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: dkdlfltm
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create  # (1) ??? ?? ??
+    show-sql: true      # (2) SQL ?? ??
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
