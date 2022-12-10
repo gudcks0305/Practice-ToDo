@@ -15,4 +15,27 @@ public class ToDoDto {
         private boolean completed;
 
     }
+    @AllArgsConstructor
+    @Getter
+    public static class Patch {
+        @NonNull
+        private String title;
+        private int order;
+        private boolean completed;
+
+    }
+    @Getter
+    @AllArgsConstructor
+    public static class Response{
+        private Long id;
+        private String title;
+        private Integer order;
+        private boolean completed;
+        private String createdAt;
+        private String modifiedAt;
+
+
+
+
+    }
 }

@@ -1,15 +1,22 @@
 package com.example.demo.todo.entity;
 
-import com.example.global.Auditable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.demo.global.audit.Auditable;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ToDoEntity extends Auditable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TODO_ID")
     private Long id;
     private String title;
-
-    private int order;
+    @Column(name = "TODO_ORDER" , columnDefinition = "integer default 0")
+    private Integer order;
     private boolean completed;
 }

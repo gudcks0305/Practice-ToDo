@@ -1,4 +1,4 @@
-package com.example.global;
+package com.example.demo.global.audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
