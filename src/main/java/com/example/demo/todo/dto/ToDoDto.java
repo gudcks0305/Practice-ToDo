@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 
+import java.util.Date;
+
 @Getter
 public class ToDoDto {
     @Getter
@@ -31,8 +33,8 @@ public class ToDoDto {
         private String title;
         private Integer order;
         private boolean completed;
-        private String createdAt;
-        private String modifiedAt;
+        private Date createdAt;
+        private Date modifiedAt;
 
 
 

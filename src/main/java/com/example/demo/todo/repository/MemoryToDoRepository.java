@@ -3,6 +3,7 @@ package com.example.demo.todo.repository;
 import com.example.demo.todo.entity.ToDoEntity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,9 @@ public class MemoryToDoRepository implements ToDoRepository {
 
     @Override
     public List<ToDoEntity> findAll() {
-        return toDoList;
+        return toDoList.stream()
+                .sorted(Comparator.comparing(ToDoEntity::getOrder))
+                .toList();
     }
 
     @Override

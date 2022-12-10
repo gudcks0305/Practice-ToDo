@@ -4,7 +4,6 @@ import com.example.demo.todo.entity.ToDoEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 public interface ToDoService {
     // get
     ToDoEntity getToDoById(Long id);

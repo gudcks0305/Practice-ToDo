@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureRestDocs
 public abstract class abstractControllerTest {
    @Autowired
-   private MockMvc mockMvc;
-   @MockBean
-   private Gson gson;
+   public MockMvc mockMvc;
+
 }

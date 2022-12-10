@@ -1,4 +1,4 @@
-= 커피 주문 애플리케이션
+= TODO 애플리케이션
 :sectnums:
 :toc: left
 :toclevels: 4
@@ -13,18 +13,18 @@ v1.0.0, 2022.07.10
 == ToDoController
 === Todo 등록
 .curl-request
-include::{snippets}/post-member/curl-request.adoc[]
+include::{snippets}/todo-post/curl-request.adoc[]
 
 .http-request
-include::{snippets}/post-member/http-request.adoc[]
+include::{snippets}/todo-post/http-request.adoc[]
 
 .request-fields
-include::{snippets}/post-member/request-fields.adoc[]
+include::{snippets}/todo-post/request-fields.adoc[]
 
 .http-response
-include::{snippets}/post-member/http-response.adoc[]
+include::{snippets}/todo-post/http-response.adoc[]
 
 .response-fields
-include::{snippets}/post-member/response-fields.adoc[]
+include::{snippets}/todo-post/response-fields.adoc[]
 
 

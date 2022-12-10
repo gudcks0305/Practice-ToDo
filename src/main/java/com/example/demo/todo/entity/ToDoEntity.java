@@ -7,7 +7,7 @@ import lombok.*;
 @Entity
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class ToDoEntity extends Auditable {
