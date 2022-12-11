@@ -64,7 +64,7 @@ public class ToDoServiceImplTest {
         //given
         int randomNumber = getRandomIndex(ENTITY_LIST.size());
         ToDoEntity toDoEntity = ENTITY_LIST.get(randomNumber);
-        List<ToDoEntity> givenList = ENTITY_LIST.stream().filter(entity -> Objects.equals(toDoEntity.getId(), entity.getId())).toList();
+        List<ToDoEntity> givenList = ENTITY_LIST.stream().filter(entity -> !Objects.equals(toDoEntity.getId(), entity.getId())).toList();
         given(toDoRepository.findAll()).willReturn(givenList);
         //when
         toDoService.deleteToDoById(toDoEntity.getId());
