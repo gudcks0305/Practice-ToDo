@@ -2,6 +2,7 @@ package com.example.demo.global.audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -20,4 +21,5 @@ public abstract class Auditable {
     @LastModifiedDate
     @Column(name = "MODIFIED_AT")
     private LocalDateTime modifiedAt;
+
 }
