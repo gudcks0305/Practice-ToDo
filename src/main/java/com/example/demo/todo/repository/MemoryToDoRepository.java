@@ -1,12 +1,13 @@
 package com.example.demo.todo.repository;
 
 import com.example.demo.todo.entity.ToDoEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class MemoryToDoRepository implements ToDoRepository {
    public List<ToDoEntity> toDoList = new ArrayList<>(
            List.of(

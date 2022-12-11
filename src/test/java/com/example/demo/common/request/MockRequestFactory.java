@@ -16,18 +16,19 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 
 
 public class MockRequestFactory {
+    private static final Gson gson = new Gson();
    public static ResultActions postRequest(MockMvc mvc, String url, Object request) throws Exception {
       return mvc.perform(
               post(url)
                       .accept(MediaType.APPLICATION_JSON)
               .contentType(MediaType.APPLICATION_JSON)
-              .content(new Gson().toJson(request)));
+              .content(gson.toJson(request)));
    }
    public static ResultActions postRequestWithParams(MockMvc mvc, String url, Object request, Map<String,Object> params) throws Exception {
       MockHttpServletRequestBuilder resultActions =  post(url)
               .accept(MediaType.APPLICATION_JSON)
               .contentType(MediaType.APPLICATION_JSON)
-              .content(new Gson().toJson(request));
+              .content(gson.toJson(request));
         for (String key : params.keySet()) {
             resultActions.param(key, params.get(key).toString());
         }

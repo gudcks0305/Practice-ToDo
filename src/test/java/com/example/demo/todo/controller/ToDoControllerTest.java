@@ -2,6 +2,7 @@ package com.example.demo.todo.controller;
 
 import com.example.demo.common.abstractControllerTest;
 import com.example.demo.common.request.MockRequestFactory;
+import com.example.demo.common.response.GenerateRestDocs;
 import com.example.demo.common.utils.RandomIndexGenerate;
 import com.example.demo.todo.data.ToDoDataFactory;
 import com.example.demo.todo.entity.ToDoEntity;
@@ -17,9 +18,14 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static com.example.demo.common.request.MockRequestFactory.postRequest;
+import static com.example.demo.common.response.GenerateRestDocs.generateRestDocs;
+import static com.example.demo.common.response.GenerateRestDocs.preRestDocsSet;
 import static com.example.demo.common.utils.RandomIndexGenerate.getRandomIndex;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -31,7 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(ToDoController.class)
 //@MockBean(JpaMetamodelMappingContext.class)
-@AutoConfigureRestDocs
 public class ToDoControllerTest extends abstractControllerTest {
 
     @MockBean
@@ -53,30 +58,17 @@ public class ToDoControllerTest extends abstractControllerTest {
 
         //then
         ResultActions result = postRequest(mockMvc, "/", post);
-        result
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(response.getId()))
-                .andExpect(jsonPath("$.title").value(response.getTitle()))
-                .andExpect(jsonPath("$.order").value(response.getOrder()))
-                .andExpect(jsonPath("$.completed").value(response.isCompleted()))
-                .andDo(document("todo-post",
-                        preprocessRequest(prettyPrint()),
-                        preprocessResponse(prettyPrint()),
-                        requestFields(
-                                fieldWithPath("title").description("할 일 제목").type(JsonFieldType.STRING),
-                                fieldWithPath("completed").description("할 일 완료 여부").type(JsonFieldType.BOOLEAN),
-                                fieldWithPath("order").description("할 일 순서").type(JsonFieldType.NUMBER)
-                        ),
-                        responseFields(
-                                fieldWithPath("id").description("할 일 고유 번호").type(JsonFieldType.NUMBER),
-                                fieldWithPath("title").description("할 일 제목").type(JsonFieldType.STRING),
-                                fieldWithPath("order").description("할 일 순서").type(JsonFieldType.NUMBER),
-                                fieldWithPath("completed").description("할 일 완료 여부").type(JsonFieldType.BOOLEAN),
-                                fieldWithPath("createdAt").description("할 일 생성 시간").type(JsonFieldType.NULL),
-                                fieldWithPath("modifiedAt").description("할 일 수정 시간").type(JsonFieldType.NULL)
-                        )
-                        )
-                );
+        preRestDocsSet(result, List.of(response), null);
+        result.andExpect(status().isOk());
+        result.andDo(generateRestDocs("todo-post",
+                post, List.of(
+                        "title: 할일 제목", "order: 할 일 순서", "completed: 할일 완료 여부"
+                ),
+                response, List.of(
+                        "id: 할일 고유 번호", "title: 할일 제목", "order: 할 일 순서", "completed: 할일 완료 여부", "createdAt: 할일 생성 시간", "modifiedAt: 할일 수정 시간"
+                ))
+                //response, Arrays.stream(response.getClass().getDeclaredFields()).map(field -> field.getName() + ": " + field.getType().getSimpleName()).toList()
+        );
 
     }
 
