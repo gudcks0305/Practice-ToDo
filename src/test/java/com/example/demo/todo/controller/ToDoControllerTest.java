@@ -2,19 +2,15 @@ package com.example.demo.todo.controller;
 
 import com.example.demo.common.abstractControllerTest;
 import com.example.demo.common.request.MockRequestFactory;
-import com.example.demo.common.response.GenerateRestDocs;
-import com.example.demo.common.utils.RandomIndexGenerate;
 import com.example.demo.todo.data.ToDoDataFactory;
 import com.example.demo.todo.entity.ToDoEntity;
 import com.example.demo.todo.mapper.ToDoMapper;
-import com.example.demo.todo.service.ToDoService;
 import com.example.demo.todo.dto.ToDoDto;
+import com.example.demo.todo.service.ToDoService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -30,11 +26,11 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @WebMvcTest(ToDoController.class)
+//@ExtendWith(MockitoExtension.class)
 public class ToDoControllerTest extends abstractControllerTest {
 
     @MockBean
@@ -82,6 +78,7 @@ public class ToDoControllerTest extends abstractControllerTest {
         ResultActions result = MockRequestFactory.getRequest(mockMvc, "/");
         preRestDocsSet(result, responses.stream().map(response -> (Object) response).collect(Collectors.toList()), null);
         result.andExpect(status().isOk());
+
         result.andDo(document(
                 "todo-get",
                 preprocessRequest(prettyPrint()),
@@ -132,7 +129,8 @@ public class ToDoControllerTest extends abstractControllerTest {
         result.andExpect(status().isOk());
         result.andDo(generateRestDocs("todo-patch",
                 response, List.of(
-                        "id: 할일 고유 번호", "title: 할일 제목", "order: 할 일 순서", "completed: 할일 완료 여부", "createdAt: 할일 생성 시간", "modifiedAt: 할일 수정 시간"
+                        "id: 할일 고유 번호", "title: 할일 제목", "order: 할 일 순서", "completed: 할일 완료 여부",
+                        "createdAt: 할일 생성 시간", "modifiedAt: 할일 수정 시간"
                 ))
         );
     }

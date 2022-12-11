@@ -1,5 +1,6 @@
 package com.example.demo.todo.service;
 
+import com.example.demo.global.utils.CustomBeanUtils;
 import com.example.demo.todo.entity.ToDoEntity;
 import com.example.demo.todo.repository.JpaToDoRepository;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,11 @@ import java.util.List;
 public class ToDoServiceImpl implements ToDoService {
 
     private final JpaToDoRepository toDoRepository;
+    private final CustomBeanUtils<ToDoEntity> customBeanUtils;
 
-    public ToDoServiceImpl(JpaToDoRepository toDoRepository) {
+    public ToDoServiceImpl(JpaToDoRepository toDoRepository, CustomBeanUtils<ToDoEntity> customBeanUtils) {
         this.toDoRepository = toDoRepository;
+        this.customBeanUtils = customBeanUtils;
     }
 
     @Override
@@ -43,6 +46,8 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public ToDoEntity updateToDoById(Long id, ToDoEntity toDoEntity) {
-        return toDoRepository.save(toDoEntity);
+        ToDoEntity findTodos = toDoRepository.findById(id).orElseThrow();
+        customBeanUtils.copyNonNullProperties(toDoEntity, findTodos);
+        return findTodos;
     }
 }
