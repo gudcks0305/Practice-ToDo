@@ -10,6 +10,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ToDoEntity extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

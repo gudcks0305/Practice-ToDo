@@ -27,4 +27,53 @@ include::{snippets}/todo-post/http-response.adoc[]
 .response-fields
 include::{snippets}/todo-post/response-fields.adoc[]
 
+=== Todo 목록 조회
+.curl-request
+include::{snippets}/todo-get/curl-request.adoc[]
+.http-request
+include::{snippets}/todo-get/http-request.adoc[]
+
+.http-response
+include::{snippets}/todo-get/http-response.adoc[]
+.response-fields
+include::{snippets}/todo-get/response-fields.adoc[]
+
+=== Todo 상세 조회
+.curl-request
+include::{snippets}/todo-get-by-id/curl-request.adoc[]
+.http-request
+include::{snippets}/todo-get-by-id/http-request.adoc[]
+.http-response
+include::{snippets}/todo-get-by-id/http-response.adoc[]
+.response-fields
+include::{snippets}/todo-get-by-id/response-fields.adoc[]
+=== Todo 수정
+.curl-request
+include::{snippets}/todo-patch/curl-request.adoc[]
+.http-request
+include::{snippets}/todo-patch/http-request.adoc[]
+
+.http-response
+include::{snippets}/todo-patch/http-response.adoc[]
+.response-fields
+include::{snippets}/todo-patch/response-fields.adoc[]
+
+=== Todo 삭제
+.curl-request
+include::{snippets}/todo-delete/curl-request.adoc[]
+.http-request
+include::{snippets}/todo-delete/http-request.adoc[]
+.http-response
+include::{snippets}/todo-delete/http-response.adoc[]
+
+=== Todo 전체 삭제
+.curl-request
+include::{snippets}/todo-delete-all/curl-request.adoc[]
+.http-request
+include::{snippets}/todo-delete-all/http-request.adoc[]
+.http-response
+include::{snippets}/todo-delete-all/http-response.adoc[]
+
+
+
 

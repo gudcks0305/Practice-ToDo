@@ -11,8 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.Map;
 
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 
 
 public class MockRequestFactory {
@@ -48,6 +47,19 @@ public class MockRequestFactory {
             resultActions.param(key, params.get(key).toString());
         }
         return mvc.perform(resultActions);
+   }
+   public static ResultActions patchRequest(MockMvc mvc, String url, Object request) throws Exception {
+      return mvc.perform(
+              patch(url)
+                      .accept(MediaType.APPLICATION_JSON)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(gson.toJson(request)));
+   }
+   public static ResultActions deleteRequest(MockMvc mvc, String url) throws Exception {
+      return mvc.perform(
+              delete(url)
+                      .accept(MediaType.APPLICATION_JSON)
+              .contentType(MediaType.APPLICATION_JSON));
    }
    public static URI createURI(String url) {
       return UriComponentsBuilder.newInstance().path(url).build().toUri();

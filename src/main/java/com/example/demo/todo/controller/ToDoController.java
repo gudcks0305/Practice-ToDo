@@ -35,12 +35,12 @@ public class ToDoController {
 
     @GetMapping
     public ResponseEntity getToDoList() {
-        return ResponseEntity.ok(toDoService.getToDoList());
+        return ResponseEntity.ok(toDoMapper.entityListToResponseList(toDoService.getToDoList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getToDoById(@PathVariable Long id) {
-        return ResponseEntity.ok(toDoService.getToDoById(id));
+        return ResponseEntity.ok(toDoMapper.entityToResponse(toDoService.getToDoById(id)));
     }
 
     @PatchMapping("/{id}")

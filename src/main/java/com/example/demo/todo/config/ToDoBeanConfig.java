@@ -1,5 +1,6 @@
 package com.example.demo.todo.config;
 
+import com.example.demo.todo.repository.JpaToDoRepository;
 import com.example.demo.todo.repository.MemoryToDoRepository;
 import com.example.demo.todo.repository.ToDoRepository;
 import com.example.demo.todo.service.MemoryToDoService;
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 //@Profile("mock")
 public class ToDoBeanConfig {
-    @Bean
+    /*@Bean
     public ToDoService toDoService() {
         return new MemoryToDoService(toDoRepositoryInterface());
     }
@@ -19,5 +20,5 @@ public class ToDoBeanConfig {
     @Bean
     public ToDoRepository toDoRepositoryInterface() {
         return new MemoryToDoRepository();
-    }
+    }*/
 }
