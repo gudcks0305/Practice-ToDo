@@ -11,7 +11,7 @@ COPY build.gradle $WORK_DIR
 COPY settings.gradle $WORK_DIR
 COPY gradle $WORK_DIR/gradle
 RUN chmod +x ./gradlew
-RUN ./gradlew build
+RUN ./gradlew clean build
 
 COPY src src
 
