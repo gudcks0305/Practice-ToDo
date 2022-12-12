@@ -30,4 +30,4 @@ ENTRYPOINT ["java", \
 "-jar", \
 "-Dspring.profiles.active=${PROFILE_OPTION}", \
 #"-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", \
-"/usr/app/build/libs/demo-0.0.1-SNAPSHOT.jar"]
+"demo-0.0.1-SNAPSHOT.jar"]
