@@ -27,7 +27,7 @@ public class GlobalExceptionAdvice {
       return ErrorResponse.of(e.getConstraintViolations());
    }
    @ExceptionHandler
-   public ResponseEntity handleCustomException(CustomLogicException e) {
-      return ResponseEntity.status(e.getExceptionCode().getCode()).body(ErrorResponse.of(e));
+   public ResponseEntity<ErrorResponse> handleCustomException(CustomLogicException e) {
+      return new ResponseEntity<>(ErrorResponse.of(e), HttpStatus.valueOf(e.getExceptionCode().getCode()));
    }
 }

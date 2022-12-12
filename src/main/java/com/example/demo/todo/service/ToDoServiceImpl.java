@@ -1,5 +1,7 @@
 package com.example.demo.todo.service;
 
+import com.example.demo.global.exception.CustomLogicException;
+import com.example.demo.global.exception.ExceptionCode;
 import com.example.demo.global.utils.CustomBeanUtils;
 import com.example.demo.todo.entity.ToDoEntity;
 import com.example.demo.todo.repository.JpaToDoRepository;
@@ -19,7 +21,7 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Override
     public ToDoEntity getToDoById(Long id) {
-        return toDoRepository.findById(id).orElseThrow();
+        return toDoRepository.findById(id).orElseThrow(() -> new CustomLogicException(ExceptionCode.TODO_NONE));
     }
 
     @Override

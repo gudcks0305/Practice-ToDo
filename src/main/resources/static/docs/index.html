@@ -483,8 +483,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -d '{
-  "title" : "title1",
-  "order" : 1,
+  "title" : "title2",
+  "order" : 2,
   "completed" : false
 }'</code></pre>
 </div>
@@ -499,8 +499,8 @@ Content-Length: 62
 Host: localhost:8080
 
 {
-  "title" : "title1",
-  "order" : 1,
+  "title" : "title2",
+  "order" : 2,
   "completed" : false
 }</code></pre>
 </div>
@@ -548,9 +548,9 @@ Content-Type: application/json
 Content-Length: 119
 
 {
-  "id" : 1,
-  "title" : "title1",
-  "order" : 1,
+  "id" : 2,
+  "title" : "title2",
+  "order" : 2,
   "completed" : false,
   "createdAt" : null,
   "modifiedAt" : null
@@ -716,7 +716,7 @@ Content-Length: 365
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/3' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/1' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -724,7 +724,7 @@ Content-Length: 365
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /3 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
@@ -741,9 +741,9 @@ Content-Type: application/json
 Content-Length: 119
 
 {
-  "id" : 3,
-  "title" : "title3",
-  "order" : 3,
+  "id" : 1,
+  "title" : "title1",
+  "order" : 1,
   "completed" : false,
   "createdAt" : null,
   "modifiedAt" : null
@@ -803,31 +803,31 @@ Content-Length: 119
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/2' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/3' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -d '{
-  "id" : 2,
-  "title" : "title2patch",
-  "order" : 2,
-  "completed" : false
+  "id" : 3,
+  "title" : "title3patch",
+  "order" : 3,
+  "completed" : true
 }'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /2 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /3 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 79
+Content-Length: 78
 Host: localhost:8080
 
 {
-  "id" : 2,
-  "title" : "title2patch",
-  "order" : 2,
-  "completed" : false
+  "id" : 3,
+  "title" : "title3patch",
+  "order" : 3,
+  "completed" : true
 }</code></pre>
 </div>
 </div>
@@ -839,13 +839,13 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 124
+Content-Length: 123
 
 {
-  "id" : 2,
-  "title" : "title2patch",
-  "order" : 2,
-  "completed" : false,
+  "id" : 3,
+  "title" : "title3patch",
+  "order" : 3,
+  "completed" : true,
   "createdAt" : null,
   "modifiedAt" : null
 }</code></pre>
@@ -904,7 +904,7 @@ Content-Length: 124
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/2' -i -X DELETE \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/1' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -912,7 +912,7 @@ Content-Length: 124
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /2 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>

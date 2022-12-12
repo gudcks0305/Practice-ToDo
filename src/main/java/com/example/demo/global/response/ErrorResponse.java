@@ -3,17 +3,19 @@ package com.example.demo.global.response;
 import com.example.demo.global.exception.CustomLogicException;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.validation.BindingResult;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@ToString
+@Getter
 public class ErrorResponse {
    private int status;
    private String message;
-   private List<FieldError> fieldErrors;
-   private List<ConstraintViolationError> violationErrors;
+   private final List<FieldError> fieldErrors;
+   private final List<ConstraintViolationError> violationErrors;
 
 
 
@@ -37,7 +39,7 @@ public class ErrorResponse {
       return new ErrorResponse(null, ConstraintViolationError.of(violations));
    }
    public static ErrorResponse of(CustomLogicException e) {
-      return new ErrorResponse(e.getExceptionCode().getCode(), e.getMessage(), null, null);
+      return new ErrorResponse(e.getExceptionCode().getCode(), e.getExceptionCode().getMessage(), null, null);
    }
 
    @Getter
