@@ -24,10 +24,10 @@ ENV WORK_DIR=/usr/app/
 
 WORKDIR $WORK_DIR
 
-COPY --from=BUILD_IMAGE $WORK_DIR/build/libs/*.jar demo-0.0.1-SNAPSHOT.jar
+COPY --from=BUILD_IMAGE /usr/app/build/libs/*.jar demo-0.0.1-SNAPSHOT.jar
 
 ENTRYPOINT ["java", \
 "-jar", \
 "-Dspring.profiles.active=${PROFILE_OPTION}", \
-"-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", \
+#"-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", \
 "demo-0.0.1-SNAPSHOT.jar"]
