@@ -1,6 +1,8 @@
 package com.example.demo.global.advice;
+import com.example.demo.global.exception.CustomLogicException;
 import com.example.demo.global.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,5 +25,9 @@ public class GlobalExceptionAdvice {
            ConstraintViolationException e) {
 
       return ErrorResponse.of(e.getConstraintViolations());
+   }
+   @ExceptionHandler
+   public ResponseEntity handleCustomException(CustomLogicException e) {
+      return ResponseEntity.status(e.getExceptionCode().getCode()).body(ErrorResponse.of(e));
    }
 }
