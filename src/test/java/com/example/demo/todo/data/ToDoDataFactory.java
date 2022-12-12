@@ -26,11 +26,13 @@ public class ToDoDataFactory {
               new ToDoDto.Response(2L, "title2patch", 2, false , null, null),
               new ToDoDto.Response(3L, "title3patch", 3, true , null, null)
     );
-    public static final List<ToDoEntity> ENTITY_LIST = List.of(
-            new ToDoEntity(1L, "title1", 1, false ),
-            new ToDoEntity(2L, "title2", 2, false ),
-            new ToDoEntity(3L, "title3", 3, false)
-    );
+
+    public static List<ToDoEntity> ENTITY_LIST(){
+        return List.of(
+                new ToDoEntity(1L, "title1", 1, false ),
+                new ToDoEntity(2L, "title2", 2, false ),
+                new ToDoEntity(3L, "title3", 3, false));
+    }
 
 
 }

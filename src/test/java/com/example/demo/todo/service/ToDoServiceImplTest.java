@@ -35,8 +35,8 @@ public class ToDoServiceImplTest {
     @Test
     void getToDoById() {
         //given
-        int randomNumber = getRandomIndex(ENTITY_LIST.size());
-        ToDoEntity toDoEntity = ENTITY_LIST.get(randomNumber);
+        int randomNumber = getRandomIndex(ENTITY_LIST().size());
+        ToDoEntity toDoEntity = ENTITY_LIST().get(randomNumber);
         given(toDoRepository.findById(Mockito.anyLong())).willReturn(Optional.of(toDoEntity));
         //when
         ToDoEntity returnEntity = toDoService.getToDoById(toDoEntity.getId());
@@ -50,26 +50,26 @@ public class ToDoServiceImplTest {
     @Test
     void getToDoList() {
         //given
-        given(toDoRepository.findAll()).willReturn(ENTITY_LIST);
+        given(toDoRepository.findAll()).willReturn(ENTITY_LIST());
         //when
         List<ToDoEntity> returnEntityList = toDoService.getToDoList();
         //then
-        assertEquals(ENTITY_LIST.size(), returnEntityList.size());
-        assertEquals(ENTITY_LIST.get(0).getId(), returnEntityList.get(0).getId());
-        assertEquals(ENTITY_LIST.get(0).getTitle(), returnEntityList.get(0).getTitle());
+        assertEquals(ENTITY_LIST().size(), returnEntityList.size());
+        assertEquals(ENTITY_LIST().get(0).getId(), returnEntityList.get(0).getId());
+        assertEquals(ENTITY_LIST().get(0).getTitle(), returnEntityList.get(0).getTitle());
     }
 
     @Test
     void deleteToDoById() {
         //given
-        int randomNumber = getRandomIndex(ENTITY_LIST.size());
-        ToDoEntity toDoEntity = ENTITY_LIST.get(randomNumber);
-        List<ToDoEntity> givenList = ENTITY_LIST.stream().filter(entity -> !Objects.equals(toDoEntity.getId(), entity.getId())).toList();
+        int randomNumber = getRandomIndex(ENTITY_LIST().size());
+        ToDoEntity toDoEntity = ENTITY_LIST().get(randomNumber);
+        List<ToDoEntity> givenList = ENTITY_LIST().stream().filter(entity -> !Objects.equals(toDoEntity.getId(), entity.getId())).toList();
         given(toDoRepository.findAll()).willReturn(givenList);
         //when
         toDoService.deleteToDoById(toDoEntity.getId());
         //then
-        assertEquals(ENTITY_LIST.size()-1, toDoService.getToDoList().size());
+        assertEquals(ENTITY_LIST().size()-1, toDoService.getToDoList().size());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class ToDoServiceImplTest {
     void saveToDo() {
         //given
         int randomNumber = getRandomIndex(POST_LIST.size());
-        ToDoEntity toDoEntity = ENTITY_LIST.get(randomNumber);
+        ToDoEntity toDoEntity = ENTITY_LIST().get(randomNumber);
         given(toDoRepository.save(Mockito.any(ToDoEntity.class))).willReturn(toDoEntity);
         //when
         ToDoEntity returnEntity = toDoService.saveToDo(toDoEntity);
@@ -99,8 +99,8 @@ public class ToDoServiceImplTest {
     @Test
     void updateToDoById() {
         //given
-        int randomNumber = getRandomIndex(ENTITY_LIST.size());
-        ToDoEntity toDoEntity = ENTITY_LIST.get(randomNumber);
+        int randomNumber = getRandomIndex(ENTITY_LIST().size());
+        ToDoEntity toDoEntity = ENTITY_LIST().get(randomNumber);
         given(toDoRepository.findById(Mockito.anyLong())).willReturn(Optional.of(toDoEntity));
         given(customBeanUtils.copyNonNullProperties(Mockito.any(), Mockito.any())).willReturn(toDoEntity);
         //when
