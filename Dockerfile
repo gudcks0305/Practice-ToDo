@@ -24,7 +24,7 @@ ENV WORK_DIR=/usr/app/
 
 WORKDIR $WORK_DIR
 
-COPY --from=BUILD_IMAGE /usr/app/build/libs/*.jar demo-0.0.1-SNAPSHOT.jar
+ONBUILD COPY --from=BUILD_IMAGE /usr/app/build/libs/*.jar demo-0.0.1-SNAPSHOT.jar
 
 ENTRYPOINT ["java", \
 "-jar", \
