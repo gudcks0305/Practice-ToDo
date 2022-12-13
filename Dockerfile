@@ -11,7 +11,7 @@ RUN ./gradlew bootjar
 
 ARG JAR_FILE=build/libs/*.jar
 #COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -Dspring.profiles.active=prod -jar ${JAR_FILE} extract
+RUN java -Dspring.profiles.active=prod -jar ${JAR_FILE} extract
 
 
 # 런타임
@@ -22,6 +22,7 @@ RUN adduser --system --uid 1001 worker
 
 WORKDIR app
 ENV port 8080
+ENV JAVA_OPTS="-Dspring.profiles.active=prod"
 COPY --from=builder app/dependencies/ ./
 COPY --from=builder app/spring-boot-loader/ ./
 COPY --from=builder app/snapshot-dependencies/ ./
