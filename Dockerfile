@@ -7,7 +7,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 RUN chmod +x ./gradlew
-RUN ./gradlew bootjar
+RUN ./gradlew clean bootjar
 
 ARG JAR_FILE=build/libs/*.jar
 #COPY ${JAR_FILE} application.jar
