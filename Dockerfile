@@ -10,7 +10,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew bootjar
 
 ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} application.jar
+#COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -Dspring.profiles.active=prod -jar ${JAR_FILE} extract
 
 
