@@ -31,7 +31,9 @@ COPY --from=builder app/application/ ./
 USER worker
 
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher" , \
-"-Dspring-boot.run.arguments=--datasource.username=${DATASOURCE_USERNAME}",\
-"-Dspring-boot.run.arguments=--datasource.password=${DATASOURCE_PASSWORD}",\
-"-Dspring-boot.run.arguments=--datasource.url=${DATASOURCE_URL}",\
+"-Dspring-boot.run.arguments=--TODO_MYSQL_HOST=${TODO_MYSQL_HOST}",\
+"-Dspring-boot.run.arguments=--TODO_MYSQL_PORT=${TODO_MYSQL_PORT}",\
+"-Dspring-boot.run.arguments=--TODO_DATA_BASE_NAME=${TODO_DATA_BASE_NAME}",\
+"-Dspring-boot.run.arguments=--TODO_MYSQL_USER_NAME=${TODO_MYSQL_USER_NAME}",\
+"-Dspring-boot.run.arguments=--TODO_MYSQL_PASSWORD=${TODO_MYSQL_PASSWORD}",\
 "--spring.profiles.active=prod"]
