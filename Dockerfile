@@ -1,33 +1,32 @@
-FROM openjdk:17-jdk-slim-buster as BUILD_IMAGE
+FROM openjdk:17-jdk-slim-buster as builder
 
-ENV WORK_DIR=/usr/app/
-
-# app 작업 디렉토리 설정
-WORKDIR $WORK_DIR
-
-# gradle 실행을 위한 필수 디렉토리 준비
-COPY gradlew $WORK_DIR
-COPY build.gradle $WORK_DIR
-COPY settings.gradle $WORK_DIR
-COPY gradle $WORK_DIR/gradle
-
-RUN ./gradlew  build || return 0
-
+WORKDIR app
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
 COPY src src
-
-# jar 파일 build
+RUN chmod +x ./gradlew
 RUN ./gradlew bootjar
 
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} application.jar
+RUN java -Djarmode=layertools -Dspring.profiles.active=prod -jar ${JAR_FILE} extract
+
+
+# 런타임
 FROM openjdk:17-jdk-slim-buster
 
-ENV WORK_DIR=/usr/app/
+RUN addgroup --system --gid 1001 worker
+RUN adduser --system --uid 1001 worker
 
-WORKDIR $WORK_DIR
-ARG JAR_FILE=build/libs/*.jar
-COPY $JAR_FILE demo-0.0.1-SNAPSHOT.jar
+WORKDIR app
+ENV port 8080
+COPY --from=builder app/dependencies/ ./
+COPY --from=builder app/spring-boot-loader/ ./
+COPY --from=builder app/snapshot-dependencies/ ./
+COPY --from=builder app/application/ ./
 
-ENTRYPOINT ["java", \
-"-jar", \
-"-Dspring.profiles.active=local", \
-#"-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", \
-"demo-0.0.1-SNAPSHOT.jar"]
+USER worker
+
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
