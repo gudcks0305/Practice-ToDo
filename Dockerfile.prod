@@ -28,6 +28,6 @@ COPY $JAR_FILE demo-0.0.1-SNAPSHOT.jar
 
 ENTRYPOINT ["java", \
 "-jar", \
-"-Dspring.profiles.active=local", \
+"-Dspring.profiles.active=prod", \
 #"-Dspring.datasource.url=${SPRING_DATASOURCE_URL}", \
 "demo-0.0.1-SNAPSHOT.jar"]
