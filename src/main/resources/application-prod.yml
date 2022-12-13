@@ -12,3 +12,4 @@ spring:
     properties:
       hibernate:
         format_sql: true  # (3) SQL pretty print
+        dialect: org.hibernate.dialect.MariaDB103Dialect
