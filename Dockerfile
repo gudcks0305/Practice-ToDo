@@ -11,7 +11,7 @@ RUN ./gradlew bootjar
 
 ARG JAR_FILE=build/libs/*.jar
 #COPY ${JAR_FILE} application.jar
-RUN java -Dspring.profiles.active=prod -jar ${JAR_FILE} extract
+RUN java -Dspring.profiles.active=prod -Djarmode=layertools  -jar ${JAR_FILE} extract
 
 
 # 런타임
@@ -30,4 +30,8 @@ COPY --from=builder app/application/ ./
 
 USER worker
 
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher" , \
+"-Dspring-boot.run.arguments=--datasource.username=${DATASOURCE_USERNAME}",\
+"-Dspring-boot.run.arguments=--datasource.password=${DATASOURCE_PASSWORD}",\
+"-Dspring-boot.run.arguments=--datasource.url=${DATASOURCE_URL}",\
+"--spring.profiles.active=prod"]
