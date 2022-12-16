@@ -8,7 +8,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update  # (1) ??? ?? ??
-    show-sql: true      # (2) SQL ?? ??
+    show-sql: false      # (2) SQL ?? ??
     properties:
       hibernate:
         format_sql: true  # (3) SQL pretty print

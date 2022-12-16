@@ -1,4 +1,19 @@
-# Spring 기술을 연습 하기 위한 레포 입니다. 
+# TODO APPS
+
+Todo 관리를 위한 웹 애플리케이션입니다.
+
+
+
+## Contributors
+
+- BE: 유형찬
+
+## Project Wiki
+
+프로젝트 팀 정보, 기획, 아키텍쳐에 대한 자세한 안내입니다.
+(https://github.com/gudcks0305/Practice-ToDo)
+
+## Spring 기술을 연습 하기 위한 레포 입니다. 
 
 비지니스 로직 부분은 최대한 줄이고 Spring의 본질적인 기술에 대한 내용 입니다. 
 

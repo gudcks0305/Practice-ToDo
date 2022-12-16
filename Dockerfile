@@ -37,3 +37,6 @@ ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher" , \
 "-Dspring-boot.run.arguments=--TODO_MYSQL_USER_NAME=${TODO_MYSQL_USER_NAME}",\
 "-Dspring-boot.run.arguments=--TODO_MYSQL_PASSWORD=${TODO_MYSQL_PASSWORD}",\
 "--spring.profiles.active=prod"]
+
+## docker container run -d -p 8080:8080 --name todo-app todo-app:latest -e TODO_MYSQL_HOST= ~~ \
+## -e TODO_MYSQL_PORT= ~~ -e TODO_DATA_BASE_NAME= ~~ -e TODO_MYSQL_USER_NAME= ~~ -e TODO_MYSQL_PASSWORD= ~~

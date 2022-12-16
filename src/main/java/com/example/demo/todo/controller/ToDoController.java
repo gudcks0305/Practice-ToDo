@@ -23,7 +23,10 @@ public class ToDoController {
         this.toDoService = toDoService;
         this.toDoMapper = toDoMapper;
     }
-
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "To-Do Application";
+    }
     @PostMapping
     public ResponseEntity postToDo(@RequestBody @Valid ToDoDto.Post requestBody) {
         ToDoEntity postEntity = toDoMapper.postToDoToEntity(requestBody);
